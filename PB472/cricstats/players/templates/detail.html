@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if data %}
+        <h2>{{ data.playerName }}</h2>
+        <p>Country : {{ data.country }}</p>
+        <p>Batting Style : {{ data.battingStyle }}</p>
+        <p>Bowling Style : {{ data.bowlingStyle }}</p>
+        <p>Age : {{ data.age }}</p>
+        <p>Runs Scored : {{ data.runScored }}</p>
+        <p>Wickets Taken : {{ data.wicketsTaken }}</p>
+    {% endif %}
+</body>
+</html>

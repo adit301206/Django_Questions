@@ -8,9 +8,11 @@
 <body>
     <h1>Players</h1>
 
+    <button><a href="{% url 'add_player' %}">Add Player</a></button>
+
     <ul>
         {% for i in data %}
-            <li><a href="">{{ i.playerName }}</a></li>
+            <li><a href="{% url 'detail' i.id %}">{{ i.playerName }}</a></li>
         {% endfor %}
     </ul>
 </body>
