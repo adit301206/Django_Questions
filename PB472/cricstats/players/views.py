@@ -27,3 +27,19 @@ def add_player(request):
     else:
         form = PlayerForm()
         return render(request , "addplayer.html" , {"form" : form})
+    
+
+def edit_player(request , player_id):
+    player = get_object_or_404(Player , pk = player_id)
+
+    if player:
+        if request.method == "POST":
+            form = PlayerForm(request.POST , instance=player)
+
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('detail' , args=[player_id]))
+            
+        else:
+            form = PlayerForm(instance=player)
+            return render(request , "editplayer.html" , {"form" : form , "data" : player})

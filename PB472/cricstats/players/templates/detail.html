@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +17,10 @@
         <p>Age : {{ data.age }}</p>
         <p>Runs Scored : {{ data.runScored }}</p>
         <p>Wickets Taken : {{ data.wicketsTaken }}</p>
+
+        <button><a href="{% url 'edit_player' data.id %}">Edit Player</a></button>
     {% endif %}
 </body>
 </html>
+
+{% endblock %}
