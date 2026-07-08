@@ -43,3 +43,13 @@ def edit_player(request , player_id):
         else:
             form = PlayerForm(instance=player)
             return render(request , "editplayer.html" , {"form" : form , "data" : player})
+        
+
+def delete_player(request , player_id):
+    player = get_object_or_404(Player , pk = player_id)
+
+    if request.method == "POST":
+        player.delete()
+        return redirect("home")
+    
+    return render(request , "deleteplayer.html" , {"data" : player})
