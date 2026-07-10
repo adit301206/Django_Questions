@@ -23,14 +23,19 @@ def dashboard(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect("dashboard" , {"data" : request.user})
+        return redirect("dashboard")
     
     if request.method == "POST":
         form = AuthenticationForm(request , data = request.POST)
 
         if form.is_valid():
-            login(request , form.get_user)
+            login(request , form.get_user())
         return redirect("dashboard")
     else:
         form = AuthenticationForm()
     return render(request , "login.html" , {"form" : form})
+
+
+def logour_user(request):
+    logout(request)
+    return redirect("dashboard")
