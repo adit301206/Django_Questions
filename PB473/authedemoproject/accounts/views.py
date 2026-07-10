@@ -38,4 +38,4 @@ def login_user(request):
 
 def logour_user(request):
     logout(request)
-    return redirect("dashboard")
+    return render(request , "logout.html")
