@@ -1,8 +1,9 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from .models import Record
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth import login , logout , aauthenticate
 from django import forms
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -64,3 +65,32 @@ def addRecord(request):
         else:
             form = AddForm()
             return render(request , "addRecord.html" , {"form" : form})
+        
+
+@login_required
+def updateRecord(request , record_id):
+    record = get_object_or_404(Record , pk = record_id)
+
+    if request.method == "POST":
+        form = AddForm(request.POST , instance=record)
+
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        
+    else:
+        form = AddForm(instance=record)
+        return render(request , "updateRecord.html" , {"form" : form})
+    
+
+@login_required
+def deleteRecord(request , record_id):
+    record = get_object_or_404(Record , pk = record_id)
+    # record.delete()
+    # return redirect("home")
+
+    if request.method == "POST":
+        record.delete()
+        return redirect("home")
+    else:
+        return render(request , "delete.html" , {"data" : record})

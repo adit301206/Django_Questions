@@ -11,6 +11,9 @@
         <th>Email</th>
         <th>Phone</th>
         <th>City</th>
+        <th>Address</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +24,9 @@
         <td>{{ record.email }}</td>
         <td>{{ record.phone }}</td>
         <td>{{ record.city }}</td>
+        <td>{{ record.address }}</td>
+        <td><button><a href="{% url 'update' record.id %}">Update</a></button></td>
+        <td><button><a href="{% url 'delete' record.id %}">Delete</a></button></td>
       </tr>
       {% endfor %}
     </tbody>
