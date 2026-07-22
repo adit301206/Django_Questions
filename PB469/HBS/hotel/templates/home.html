@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Welcome to Home Page</h1>
+
+{% if rooms %}
+    {% for room in rooms %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+            <h3>Room {{ room.number }}</h3>
+            <a href="{% url 'bookroom' room.id %}">Book & Pay</a> | 
+            <a href="{% url 'reviews' room.id %}">Reviews</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No rooms available. Please add rooms in the admin panel.</p>
+{% endif %}
+
+{% endblock %}
