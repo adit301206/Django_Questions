@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Blogs</h1>
+
+{% for blog in data %}
+    <div>
+        <h4>{{ blog.title }}</h4>
+        <p>{{ blog.content }}</p>
+        <p>Author : {{ blog.author }}</p>
+        <br>
+    </div>
+
+{% endfor %}
+
+{% endblock %}

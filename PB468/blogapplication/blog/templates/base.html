@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <nav>
+        <a href="/">Home</a> | <a href="/contact/">Contact</a> |
+        {% if user.is_authenticated %}
+            <a href="{% url 'createPost' %}">New Post</a> |
+            <a href="/password/">Change Password</a> |
+            Logged in as {{ user.username }}
+            <form action="{% url 'logout' %}"a method="post" style="display:inline;">
+                {% csrf_token %}<button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
